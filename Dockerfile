@@ -12,9 +12,6 @@ RUN set -eux; \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
 echo $TZ > /etc/timezone
 
-# Replace sources mirror
-# ADD sources.list /etc/apt/
-
 # Add SourceHan fonts
 RUN set -x \
 	&& apt-get update \
@@ -22,7 +19,7 @@ RUN set -x \
 	&& rm -rf /var/lib/apt/lists/*
 
 # GeoServer
-ADD conf/geoserver.xml /usr/local/tomcat/conf/Catalina/localhost/geoserver.xml
+COPY conf/geoserver.xml /usr/local/tomcat/conf/Catalina/localhost/geoserver.xml
 RUN mkdir ${GEOSERVER_DATA_DIR} \
 	&& mkdir ${GEOSERVER_INSTALL_DIR} \
 	&& cd ${GEOSERVER_INSTALL_DIR} \
@@ -58,5 +55,6 @@ ENV CATALINA_OPTS "-server -Djava.awt.headless=true \
 
 ADD start.sh /usr/local/bin/start.sh
 CMD start.sh
+# ENTRYPOINT ["/bin/bash, "./start.sh"]
 
 EXPOSE 8080
