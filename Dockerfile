@@ -1,33 +1,21 @@
-FROM tomcat:9-jre8
+FROM tomcat:9-jdk11
 
-MAINTAINER Oscar Fonts <oscar.fonts@geomati.co>
+LABEL Author="qdxkrs"
 
-ENV GEOSERVER_VERSION 2.14.3
+ENV GEOSERVER_VERSION 2.15.1
 ENV GEOSERVER_DATA_DIR /var/local/geoserver
 ENV GEOSERVER_INSTALL_DIR /usr/local/geoserver
 
 # Uncomment to use APT cache (requires apt-cacher-ng on host)
 #RUN echo "Acquire::http { Proxy \"http://`/sbin/ip route|awk '/default/ { print $3 }'`:3142\"; };" > /etc/apt/apt.conf.d/71-apt-cacher-ng
 
-# Microsoft fonts
+# Microsoft fonts && SourceHan fonts
 RUN echo "deb http://httpredir.debian.org/debian stretch contrib" >> /etc/apt/sources.list
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -yq ttf-mscorefonts-installer \
+    && apt-get install -y fonts-noto-cjk \
 	&& rm -rf /var/lib/apt/lists/*
-
-# Native JAI & ImageIO
-RUN cd /usr/lib/jvm/java-8-openjdk-amd64 \
-	&& wget http://download.java.net/media/jai/builds/release/1_1_3/jai-1_1_3-lib-linux-amd64-jdk.bin \
-	&& tail -n +139 jai-1_1_3-lib-linux-amd64-jdk.bin > INSTALL-jai \
-	&& chmod u+x INSTALL-jai \
-	&& ./INSTALL-jai \
-	&& rm jai-1_1_3-lib-linux-amd64-jdk.bin INSTALL-jai *.txt \
-	&& wget http://download.java.net/media/jai-imageio/builds/release/1.1/jai_imageio-1_1-lib-linux-amd64-jdk.bin \
-	&& tail -n +215 jai_imageio-1_1-lib-linux-amd64-jdk.bin > INSTALL-jai_imageio \
-	&& chmod u+x INSTALL-jai_imageio \
-	&& ./INSTALL-jai_imageio \
-	&& rm jai_imageio-1_1-lib-linux-amd64-jdk.bin INSTALL-jai_imageio *.txt
 
 # GeoServer
 ADD conf/geoserver.xml /usr/local/tomcat/conf/Catalina/localhost/geoserver.xml
