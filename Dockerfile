@@ -6,14 +6,18 @@ ENV GEOSERVER_VERSION 2.15.1
 ENV GEOSERVER_DATA_DIR /var/local/geoserver
 ENV GEOSERVER_INSTALL_DIR /usr/local/geoserver
 
-# Uncomment to use APT cache (requires apt-cacher-ng on host)
-#RUN echo "Acquire::http { Proxy \"http://`/sbin/ip route|awk '/default/ { print $3 }'`:3142\"; };" > /etc/apt/apt.conf.d/71-apt-cacher-ng
+# Set TimeZone
+ENV TZ=Asia/Shanghai
+RUN set -eux; \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
+echo $TZ > /etc/timezone
 
-# Microsoft fonts && SourceHan fonts
-RUN echo "deb http://httpredir.debian.org/debian stretch contrib" >> /etc/apt/sources.list
+# Replace sources mirror
+# ADD sources.list /etc/apt/
+
+# Add SourceHan fonts
 RUN set -x \
 	&& apt-get update \
-	&& apt-get install -yq ttf-mscorefonts-installer \
     && apt-get install -y fonts-noto-cjk \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -53,6 +57,7 @@ ENV CATALINA_OPTS "-server -Djava.awt.headless=true \
 	-DGEOSERVER_DATA_DIR=${GEOSERVER_DATA_DIR}"
 
 ADD start.sh /usr/local/bin/start.sh
+RUN chmod 777 /usr/local/bin/start.sh
 CMD start.sh
 
 EXPOSE 8080
