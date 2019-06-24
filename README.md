@@ -1,21 +1,21 @@
 docker-geoserver
 ================
 
-Dockerized GeoServer.
+Dockerized GeoServer.A geoserver docker image easily to depoly.
 
-
-## Features
+## Main Features:
 
 * Built on top of [Docker's official tomcat image](https://hub.docker.com/_/tomcat/).
+* UP to geoserver 2.15.1
 * Taken care of [JVM Options](http://docs.geoserver.org/latest/en/user/production/container.html), to avoid PermGen space issues &c.
 * Separate GEOSERVER_DATA_DIR location (on /var/local/geoserver).
 * [CORS ready](http://enable-cors.org/server_tomcat.html).
 * Up to GeoServer 2.14.x: Automatic installation of [Native JAI and Image IO](http://docs.geoserver.org/latest/en/user/production/java.html#install-native-jai-and-jai-image-i-o-extensions) for better performance.
 * From GeoServer 2.15.x: OpenJDK 11.
 * Configurable extensions.
-* Automatic installation of [Microsoft Core Fonts](http://www.microsoft.com/typography/fonts/web.aspx) for better labelling compatibility.
+* Automatic installation of [Microsoft Core Fonts](http://www.microsoft.com/typography/fonts/web.aspx) and
+Source Han Sans Fonts for better labelling compatibility.
 * AWS configuration files and scripts in order to deploy easily using [Elastic Beanstalk](https://aws.amazon.com/documentation/elastic-beanstalk/). See [github repo](https://github.com/oscarfonts/docker-geoserver/blob/master/aws/README.md). Thanks to @victorzinho
-
 
 ## Trusted builds
 
@@ -30,7 +30,6 @@ Other experimental (not automated build):
 * [`oracle`](https://github.com/oscarfonts/docker-geoserver/blob/master/oracle/Dockerfile). Uses [wnameless/oracle-xe-11g](https://hub.docker.com/r/wnameless/oracle-xe-11g/), needs ojdbc7.jar and [setting up a database](https://github.com/oscarfonts/docker-geoserver/blob/master/oracle/setup.sql). See [the run commands](https://github.com/oscarfonts/docker-geoserver/blob/master/oracle/run.sh).
 
 * [`h2-vector`](https://github.com/oscarfonts/docker-geoserver/blob/master/h2-vector/Dockerfile). Plays nice with [oscarfonts/h2:geodb](https://hub.docker.com/r/oscarfonts/h2/tags/), and includes sample scripts for docker-compose and systemd.
-
 
 ## Running
 
