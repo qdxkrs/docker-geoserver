@@ -21,13 +21,13 @@ Source Han Sans Fonts for better labelling compatibility.
 Get the image:
 
 ```
-docker pull qdxkrs/geoserver
+docker pull qdxkrs/docker-geoserver
 ```
 
 Run as a service, exposing port 8080 and using a hosted GEOSERVER_DATA_DIR:
 
 ```
-docker run -d -p 8080:8080 -v /path/to/local/data_dir:/var/local/geoserver --name=MyGeoServerInstance qdxkrs/geoserver
+docker run -d -p 8080:8080 -v /path/to/local/data_dir:/var/local/geoserver --name=MyGeoServerInstance qdxkrs/docker-geoserver
 ```
 
 ### Configure extensions
@@ -35,7 +35,7 @@ docker run -d -p 8080:8080 -v /path/to/local/data_dir:/var/local/geoserver --nam
 To add extensions to your GeoServer installation, provide a directory with the unzipped extensions separated by directories (one directory per extension):
 
 ```
-docker run -d -p 8080:8080 -v /path/to/local/exts_dir:/var/local/geoserver-exts/ --name=MyGeoServerInstance qdxkrs/geoserver
+docker run -d -p 8080:8080 -v /path/to/local/exts_dir:/var/local/geoserver-exts/ --name=MyGeoServerInstance qdxkrs/docker-geoserver
 ```
 
 You can use the `build_exts_dir.sh` script together with a [extensions](https://github.com/oscarfonts/docker-geoserver/tree/master/extensions) configuration file to create your own extensions directory easily.
@@ -47,7 +47,7 @@ You can use the `build_exts_dir.sh` script together with a [extensions](https://
 It is also possible to configure the context path by providing a Catalina configuration directory:
 
 ```
-docker run -d -p 8080:8080 -v /path/to/local/data_dir:/var/local/geoserver -v /path/to/local/conf_dir:/usr/local/tomcat/conf/Catalina/localhost --name=MyGeoServerInstance qdxkrs/geoserver
+docker run -d -p 8080:8080 -v /path/to/local/data_dir:/var/local/geoserver -v /path/to/local/conf_dir:/usr/local/tomcat/conf/Catalina/localhost --name=MyGeoServerInstance qdxkrs/docker-geoserver
 ```
 
 See some [examples](https://github.com/oscarfonts/docker-geoserver/tree/master/2.9.1/conf).
