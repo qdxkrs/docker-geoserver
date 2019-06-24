@@ -57,7 +57,6 @@ ENV CATALINA_OPTS "-server -Djava.awt.headless=true \
 	-DGEOSERVER_DATA_DIR=${GEOSERVER_DATA_DIR}"
 
 ADD start.sh /usr/local/bin/start.sh
-RUN chmod 777 /usr/local/bin/start.sh
 CMD start.sh
 
 EXPOSE 8080

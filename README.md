@@ -15,34 +15,19 @@ Dockerized GeoServer.A geoserver docker image easily to depoly.
 * Configurable extensions.
 * Automatic installation of [Microsoft Core Fonts](http://www.microsoft.com/typography/fonts/web.aspx) and
 Source Han Sans Fonts for better labelling compatibility.
-* AWS configuration files and scripts in order to deploy easily using [Elastic Beanstalk](https://aws.amazon.com/documentation/elastic-beanstalk/). See [github repo](https://github.com/oscarfonts/docker-geoserver/blob/master/aws/README.md). Thanks to @victorzinho
-
-## Trusted builds
-
-Latest versions with [automated builds](https://hub.docker.com/r/oscarfonts/geoserver/) available on [docker registry](https://registry.hub.docker.com/):
-
-* [`latest`, `2.15.1` (*2.15.1/Dockerfile*)](https://github.com/oscarfonts/docker-geoserver/blob/master/2.15.1/Dockerfile)
-* [`2.14.3` (*2.14.3/Dockerfile*)](https://github.com/oscarfonts/docker-geoserver/blob/master/2.14.3/Dockerfile)
-
-
-Other experimental (not automated build):
-
-* [`oracle`](https://github.com/oscarfonts/docker-geoserver/blob/master/oracle/Dockerfile). Uses [wnameless/oracle-xe-11g](https://hub.docker.com/r/wnameless/oracle-xe-11g/), needs ojdbc7.jar and [setting up a database](https://github.com/oscarfonts/docker-geoserver/blob/master/oracle/setup.sql). See [the run commands](https://github.com/oscarfonts/docker-geoserver/blob/master/oracle/run.sh).
-
-* [`h2-vector`](https://github.com/oscarfonts/docker-geoserver/blob/master/h2-vector/Dockerfile). Plays nice with [oscarfonts/h2:geodb](https://hub.docker.com/r/oscarfonts/h2/tags/), and includes sample scripts for docker-compose and systemd.
 
 ## Running
 
 Get the image:
 
 ```
-docker pull oscarfonts/geoserver
+docker pull qdxkrs/geoserver
 ```
 
 Run as a service, exposing port 8080 and using a hosted GEOSERVER_DATA_DIR:
 
 ```
-docker run -d -p 8080:8080 -v /path/to/local/data_dir:/var/local/geoserver --name=MyGeoServerInstance oscarfonts/geoserver
+docker run -d -p 8080:8080 -v /path/to/local/data_dir:/var/local/geoserver --name=MyGeoServerInstance qdxkrs/geoserver
 ```
 
 ### Configure extensions
@@ -50,7 +35,7 @@ docker run -d -p 8080:8080 -v /path/to/local/data_dir:/var/local/geoserver --nam
 To add extensions to your GeoServer installation, provide a directory with the unzipped extensions separated by directories (one directory per extension):
 
 ```
-docker run -d -p 8080:8080 -v /path/to/local/exts_dir:/var/local/geoserver-exts/ --name=MyGeoServerInstance oscarfonts/geoserver
+docker run -d -p 8080:8080 -v /path/to/local/exts_dir:/var/local/geoserver-exts/ --name=MyGeoServerInstance qdxkrs/geoserver
 ```
 
 You can use the `build_exts_dir.sh` script together with a [extensions](https://github.com/oscarfonts/docker-geoserver/tree/master/extensions) configuration file to create your own extensions directory easily.
@@ -62,7 +47,7 @@ You can use the `build_exts_dir.sh` script together with a [extensions](https://
 It is also possible to configure the context path by providing a Catalina configuration directory:
 
 ```
-docker run -d -p 8080:8080 -v /path/to/local/data_dir:/var/local/geoserver -v /path/to/local/conf_dir:/usr/local/tomcat/conf/Catalina/localhost --name=MyGeoServerInstance oscarfonts/geoserver
+docker run -d -p 8080:8080 -v /path/to/local/data_dir:/var/local/geoserver -v /path/to/local/conf_dir:/usr/local/tomcat/conf/Catalina/localhost --name=MyGeoServerInstance qdxkrs/geoserver
 ```
 
 See some [examples](https://github.com/oscarfonts/docker-geoserver/tree/master/2.9.1/conf).
