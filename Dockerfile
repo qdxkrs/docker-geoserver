@@ -55,6 +55,6 @@ ENV CATALINA_OPTS "-server -Djava.awt.headless=true \
 
 COPY start.sh /usr/local/bin/start.sh
 # CMD start.sh
-ENTRYPOINT ["sh", "/usr/src/app/docker-entrypoint.sh"]
+ENTRYPOINT ["sh", "/usr/local/bin/start.sh"]
 
 EXPOSE 8080
