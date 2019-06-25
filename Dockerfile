@@ -53,8 +53,8 @@ ENV CATALINA_OPTS "-server -Djava.awt.headless=true \
 	-Xms768m -Xmx1560m -XX:+UseConcMarkSweepGC -XX:NewSize=48m \
 	-DGEOSERVER_DATA_DIR=${GEOSERVER_DATA_DIR}"
 
-ADD start.sh /usr/local/bin/start.sh
-RUN chmod 777  /usr/local/bin/start.sh
+COPY start.sh /usr/local/bin/start.sh
 CMD start.sh
+# ENTRYPOINT ["sh", "/usr/src/app/docker-entrypoint.sh"]
 
 EXPOSE 8080
