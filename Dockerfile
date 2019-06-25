@@ -54,7 +54,7 @@ ENV CATALINA_OPTS "-server -Djava.awt.headless=true \
 	-DGEOSERVER_DATA_DIR=${GEOSERVER_DATA_DIR}"
 
 COPY start.sh /usr/local/bin/start.sh
-CMD start.sh
-# ENTRYPOINT ["sh", "/usr/src/app/docker-entrypoint.sh"]
+# CMD start.sh
+ENTRYPOINT ["sh", "/usr/src/app/docker-entrypoint.sh"]
 
 EXPOSE 8080
