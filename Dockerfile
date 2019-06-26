@@ -5,9 +5,9 @@ LABEL Author="qdxkrs"
 ENV GEOSERVER_VERSION 2.15.1
 ENV GEOSERVER_DATA_DIR /var/local/geoserver
 ENV GEOSERVER_INSTALL_DIR /usr/local/geoserver
-
 # Set TimeZone
 ENV TZ=Asia/Shanghai
+
 RUN set -eux; \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
 echo $TZ > /etc/timezone
@@ -50,7 +50,7 @@ RUN sed -i '\:</web-app>:i\
 
 # Tomcat environment
 ENV CATALINA_OPTS "-server -Djava.awt.headless=true \
-	-Xms768m -Xmx1560m -XX:+UseConcMarkSweepGC -XX:NewSize=48m \
+	-Xms768m -Xmx1560m -XX:NewSize=48m \
 	-DGEOSERVER_DATA_DIR=${GEOSERVER_DATA_DIR}"
 
 COPY start.sh /usr/local/bin/start.sh

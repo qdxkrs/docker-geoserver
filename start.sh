@@ -1,6 +1,8 @@
 #!/bin/bash
-for ext in `ls -d /var/local/geoserver-exts/*/`; do
-  cp "${ext}"*.jar /usr/local/geoserver/WEB-INF/lib
+
+for ext in `ls /var/local/geoserver-exts/*.jar`
+do
+  cp $ext /usr/local/geoserver/WEB-INF/lib
 done
 
 catalina.sh run
