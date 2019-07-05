@@ -5,6 +5,10 @@ LABEL Author="qdxkrs"
 ENV GEOSERVER_VERSION 2.15.2
 ENV GEOSERVER_DATA_DIR /var/local/geoserver
 ENV GEOSERVER_INSTALL_DIR /usr/local/geoserver
+
+# Remove default webapp
+Run rm -rf /usr/local/tomcat/webapps/*
+
 # Set TimeZone
 ENV TZ=Asia/Shanghai
 
