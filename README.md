@@ -1,7 +1,7 @@
 docker-geoserver
 ================
 
-Dockerized GeoServer.A geoserver docker image easily to depoly.refer to [oscarfonts/docker-geoserver](https://github.com/oscarfonts/docker-geoserver)
+Dockerized GeoServer.A geoserver docker image easily to depoly.refer to [oscarfonts/docker-geoserver](https://github.com/oscarfonts/docker-geoserver).
 
 ## Main Features:
 
