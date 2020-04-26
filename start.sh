@@ -6,4 +6,3 @@ do
 done
 
 catalina.sh run
-
