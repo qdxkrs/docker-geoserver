@@ -6,11 +6,11 @@ Dockerized GeoServer.A geoserver docker image easily to depoly.refer to [oscarfo
 
 * Built on top of [Docker's official tomcat image](https://hub.docker.com/_/tomcat/).
 * Tomcat security reinforce.
-* UP to geoserver 2.17.0
+* UP to geoserver 2.18.1
 * Taken care of [JVM Options](http://docs.geoserver.org/latest/en/user/production/container.html), to avoid PermGen space issues &c.
 * Separate GEOSERVER_DATA_DIR location (on /var/local/geoserver).
 * [CORS ready](http://enable-cors.org/server_tomcat.html).
-* From GeoServer 2.17.x OpenJDK 11 +
+* From GeoServer 2.18.x OpenJDK 11 +
 * Modify the time zone to UTC/GMT+08:00.
 * Configurable extensions.
 * Automatic installation of Source Han Sans Fonts for better labelling compatibility.
