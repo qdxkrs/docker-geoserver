@@ -50,7 +50,20 @@ RUN sed -i '\:</web-app>:i\
 <filter-mapping>\n\
     <filter-name>CorsFilter</filter-name>\n\
     <url-pattern>/*</url-pattern>\n\
-</filter-mapping>' ${GEOSERVER_INSTALL_DIR}/WEB-INF/web.xml
+</filter-mapping>\n\
+    <filter>\n\
+        <filter-name>httpHeaderSecurity</filter-name>\n\
+        <filter-class>org.apache.catalina.filters.HttpHeaderSecurityFilter</filter-class>\n\
+        <init-param>\n\
+            <param-name>antiClickJackingOption</param-name>\n\
+            <param-value>SAMEORIGIN</param-value>\n\
+        </init-param>\n\
+        <async-supported>true</async-supported>\n\
+    </filter>\n\
+    <filter-mapping>\n\
+        <filter-name>httpHeaderSecurity</filter-name>\n\
+        <url-pattern>/*</url-pattern>\n\
+    </filter-mapping>' ${GEOSERVER_INSTALL_DIR}/WEB-INF/web.xml
 
 # Tomcat environment
 ENV CATALINA_OPTS "-server -Djava.awt.headless=true \
