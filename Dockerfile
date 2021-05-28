@@ -2,7 +2,7 @@ FROM tomcat:9-jdk11
 
 LABEL Author="qdxkrs"
 
-ENV GEOSERVER_VERSION 2.19.0
+ENV GEOSERVER_VERSION 2.19.1
 ENV GEOSERVER_DATA_DIR /var/local/geoserver
 ENV GEOSERVER_INSTALL_DIR /usr/local/geoserver
 
