@@ -5,6 +5,7 @@ LABEL Author="qdxkrs"
 ENV GEOSERVER_VERSION 2.20.1
 ENV GEOSERVER_DATA_DIR /var/local/geoserver
 ENV GEOSERVER_INSTALL_DIR /usr/local/geoserver
+ENV GEOSERVER_EXT_DIR /var/local/geoserver-exts
 
 # Remove default webapp
 RUN rm -rf /usr/local/tomcat/webapps/* 
@@ -76,8 +77,15 @@ ENV CATALINA_OPTS "-server -Djava.awt.headless=true \
 	-Xms128m -Xmx2048m -XX:NewSize=64m \
 	-DGEOSERVER_DATA_DIR=${GEOSERVER_DATA_DIR}"
 
-COPY start.sh /usr/local/bin/start.sh
-# CMD start.sh
-ENTRYPOINT ["sh", "/usr/local/bin/start.sh"]
+# Create tomcat user to avoid root access. 
+RUN addgroup --gid 1099 tomcat && useradd -m -u 1099 -g tomcat tomcat \
+    && chown -R tomcat:tomcat . \
+    && chown -R tomcat:tomcat ${GEOSERVER_DATA_DIR} \
+    && chown -R tomcat:tomcat ${GEOSERVER_INSTALL_DIR}
+
+ADD start.sh /usr/local/bin/start.sh
+ENTRYPOINT ["/bin/sh", "/usr/local/bin/start.sh"]
+
+VOLUME ["${GEOSERVER_DATA_DIR}", "${GEOSERVER_EXT_DIR}"]
 
 EXPOSE 8080
