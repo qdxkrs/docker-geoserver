@@ -2,7 +2,7 @@ FROM tomcat:9-jdk11
 
 LABEL Author="qdxkrs"
 
-ENV GEOSERVER_VERSION 2.19.1
+ENV GEOSERVER_VERSION 2.20.1
 ENV GEOSERVER_DATA_DIR /var/local/geoserver
 ENV GEOSERVER_INSTALL_DIR /usr/local/geoserver
 
@@ -46,6 +46,22 @@ RUN sed -i '\:</web-app>:i\
         <param-name>cors.allowed.methods</param-name>\n\
         <param-value>GET,POST,HEAD,OPTIONS,PUT</param-value>\n\
     </init-param>\n\
+    <init-param>\
+        <param-name>cors.allowed.headers</param-name>\
+        <param-value>Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization</param-value>\
+    </init-param>\
+    <init-param>\
+        <param-name>cors.exposed.headers</param-name>\
+        <param-value>Access-Control-Allow-Origin,Access-Control-Allow-Credentials</param-value>\
+    </init-param>\
+    <init-param>\
+        <param-name>cors.support.credentials</param-name>\
+        <param-value>true</param-value>\
+    </init-param>\
+    <init-param>\
+        <param-name>cors.preflight.maxage</param-name>\
+        <param-value>10</param-value>\
+    </init-param>\
 </filter>\n\
 <filter-mapping>\n\
     <filter-name>CorsFilter</filter-name>\n\
