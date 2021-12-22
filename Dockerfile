@@ -43,7 +43,7 @@ RUN rm -rf /usr/local/tomcat/webapps/* \
             </init-param>\n\
             <init-param>\n\
                 <param-name>cors.allowed.methods</param-name>\n\
-                <param-value>GET,POST,HEAD,OPTIONS,PUT</param-value>\n\
+                <param-value>GET,POST,PUT,DELETE,OPTIONS,HEAD</param-value>\n\
             </init-param>\n\
             <init-param>\
                 <param-name>cors.allowed.headers</param-name>\
