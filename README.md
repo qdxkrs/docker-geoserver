@@ -39,7 +39,7 @@ It is also possible to configure the context path by providing a Catalina config
 
 ```docker run -d -p 8080:8080 -v /path/to/local/data_dir:/var/local/geoserver -v /path/to/local/conf_dir:/usr/local/tomcat/conf/Catalina/localhost --name=MyGeoServerInstance qdxkrs/docker-geoserver```
 
-See some [examples](https://github.com/oscarfonts/docker-geoserver/tree/master/2.19.3/conf).
+
 
 ### Logs
 
