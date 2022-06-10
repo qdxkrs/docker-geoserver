@@ -2,7 +2,7 @@ FROM tomcat:9-jdk11-temurin
 
 LABEL Author="qdxkrs"
 
-ENV GEOSERVER_VERSION 2.20.4
+ENV GEOSERVER_VERSION 2.21.0
 ENV GEOSERVER_DATA_DIR /var/local/geoserver
 ENV GEOSERVER_INSTALL_DIR /usr/local/geoserver
 ENV GEOSERVER_EXT_DIR /var/local/geoserver-exts
@@ -67,7 +67,7 @@ RUN rm -rf /usr/local/tomcat/webapps/* \
 
 # Tomcat environment
 ENV CATALINA_OPTS "-server -Djava.awt.headless=true \
-	-Xms512m -Xmx2048m -XX:NewSize=64m \
+	-Xms768m -Xmx2048m -XX:NewSize=64m \
 	-DGEOSERVER_DATA_DIR=${GEOSERVER_DATA_DIR}"
 
 ADD start.sh /usr/local/bin/start.sh
